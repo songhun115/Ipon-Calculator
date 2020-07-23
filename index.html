@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="index.js" />
+  </head>
+  <body>
+    <div class="container">
+      <table border="1">
+        <tr>
+          <td colspan="4">
+            <form class="display__from">
+              <input type="text" id="display" />
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <form class="result__from">
+              <input type="text" id="result" />
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td onclick="Eraser()">CA</td>
+          <td onclick="add('±')">±</td>
+          <td onclick="add('%')">%</td>
+          <td onclick="add('/')">÷</td>
+        </tr>
+        <tr>
+          <td onclick="add(1)">1</td>
+          <td onclick="add(2)">2</td>
+          <td onclick="add(3)">3</td>
+          <td onclick="add('*')">x</td>
+        </tr>
+        <tr>
+          <td onclick="add(4)">4</td>
+          <td onclick="add(5)">5</td>
+          <td onclick="add(6)">6</td>
+          <td onclick="add('-')">-</td>
+        </tr>
+        <tr>
+          <td onclick="add(1)">1</td>
+          <td onclick="add(2)">2</td>
+          <td onclick="add(3)">3</td>
+          <td onclick="add('+')">+</td>
+        </tr>
+        <tr>
+          <td onclick="add(0)" colspan="2">0</td>
+          <td onclick="add('.')">.</td>
+          <td onclick="calculate()">=</td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      var display = document.getElementById("display");
+      var display__form = document.querySelector(".display__form");
+      var value__form = document.querySelector(".value__form");
+
+      function add(char) {
+        var display = document.getElementById("display");
+        display.value = display.value + char;
+      }
+
+      function calculate() {
+        var display = document.getElementById("display");
+        var result = eval(display.value);
+        document.getElementById("result").value = result;
+      }
+
+      function Eraser() {
+        document.getElementById("display").value = "";
+        document.getElementById("result").value = "";
+      }
+
+      function init() {
+        display.addEventListener("submit", () => {
+          event.preventDefault();
+          calculate();
+          display.value = "";
+        });
+      }
+      init();
+    </script>
+  </body>
+</html>
