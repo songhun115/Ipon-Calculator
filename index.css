@@ -23,7 +23,7 @@ html {
 
 /* 커스텀  끝 */
 
-.container {
+.Calculator__container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,5 +35,7 @@ table {
 
 td {
   padding: 10px;
+
   cursor: pointer;
+  text-align: center;
 }

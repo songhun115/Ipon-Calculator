@@ -8,32 +8,32 @@
     <link rel="stylesheet" href="index.js" />
   </head>
   <body>
-    <div class="container">
+    <section class="Calculator__container">
       <table border="1">
         <tr>
           <td colspan="4">
-            <form class="display__from">
-              <input type="text" id="display" />
+            <form class="dispaly__form">
+              <input type="text" id="dispaly__input" />
             </form>
           </td>
         </tr>
         <tr>
           <td colspan="4">
-            <form class="result__from">
-              <input type="text" id="result" />
+            <form class="result__form">
+              <input type="text" id="result__input" />
             </form>
           </td>
         </tr>
         <tr>
-          <td onclick="Eraser()">CA</td>
-          <td onclick="add('±')">±</td>
+          <td onclick="eraser()">ca</td>
+          <td onclick="add('+')">±</td>
           <td onclick="add('%')">%</td>
           <td onclick="add('/')">÷</td>
         </tr>
         <tr>
-          <td onclick="add(1)">1</td>
-          <td onclick="add(2)">2</td>
-          <td onclick="add(3)">3</td>
+          <td onclick="add(7)">7</td>
+          <td onclick="add(8)">8</td>
+          <td onclick="add(9)">9</td>
           <td onclick="add('*')">x</td>
         </tr>
         <tr>
@@ -49,42 +49,47 @@
           <td onclick="add('+')">+</td>
         </tr>
         <tr>
-          <td onclick="add(0)" colspan="2">0</td>
+          <td colspan="2" onclick="add(0)">0</td>
           <td onclick="add('.')">.</td>
-          <td onclick="calculate()">=</td>
+          <td onclick="calculator()">=</td>
         </tr>
       </table>
-    </div>
+    </section>
 
     <script>
-      var display = document.getElementById("display");
-      var display__form = document.querySelector(".display__form");
-      var value__form = document.querySelector(".value__form");
+      const dispalyForm = document.querySelector(".dispaly__form");
+      const dispaly__input = document.querySelector("#dispaly__input");
+      const resultForm = document.querySelector(".result__form");
+      const result__input = document.querySelector("#result__input");
+      let numberClickd = false;
 
       function add(char) {
-        var display = document.getElementById("display");
-        display.value = display.value + char;
+        if (numberClickd === false) {
+          if (isNaN(char) === true) {
+          } else {
+            dispaly__input.value = dispaly__input.value + char;
+          }
+        } else {
+          dispaly__input.value = dispaly__input.value + char;
+        }
+        if (isNaN(char) === false) {
+          numberClickd = true;
+        } else {
+          numberClickd = false;
+        }
       }
 
-      function calculate() {
-        var display = document.getElementById("display");
-        var result = eval(display.value);
-        document.getElementById("result").value = result;
+      function calculator() {
+        var result = eval(dispaly__input.value);
+        console.log(result);
+
+        result__input.value = result;
       }
 
-      function Eraser() {
-        document.getElementById("display").value = "";
-        document.getElementById("result").value = "";
+      function eraser() {
+        dispaly__input.value = "";
+        result__input.value = "";
       }
-
-      function init() {
-        display.addEventListener("submit", () => {
-          event.preventDefault();
-          calculate();
-          display.value = "";
-        });
-      }
-      init();
     </script>
   </body>
 </html>
